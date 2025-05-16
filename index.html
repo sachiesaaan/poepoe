@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>三目並べ 改</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      (function (d) {
+        var config = {
+            kitId: "cpo1nrn",
+            scriptTimeout: 3000,
+            async: true,
+          },
+          h = d.documentElement,
+          t = setTimeout(function () {
+            h.className =
+              h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+          }, config.scriptTimeout),
+          tk = d.createElement("script"),
+          f = false,
+          s = d.getElementsByTagName("script")[0],
+          a;
+        h.className += " wf-loading";
+        tk.src = "https://use.typekit.net/" + config.kitId + ".js";
+        tk.async = true;
+        tk.onload = tk.onreadystatechange = function () {
+          a = this.readyState;
+          if (f || (a && a != "complete" && a != "loaded")) return;
+          f = true;
+          clearTimeout(t);
+          try {
+            Typekit.load(config);
+          } catch (e) {}
+        };
+        s.parentNode.insertBefore(tk, s);
+      })(document);
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>三目並べ 改</h1>
+      <div id="status-area">
+        <p id="current-player">現在のプレイヤー: X</p>
+        <p id="message"></p>
+      </div>
+      <div id="board" class="board"></div>
+      <button id="pass-button">パス</button>
+      <button id="reset-button">リセット</button>
+      <div id="rules">
+        <p>ルール</p>
+        <ul>
+          <li>前ターンで置いたマスに隣接するマスには置けない</li>
+          <li>置けないときはパス</li>
+          <li>パスしたら次のターンはどこでも置ける</li>
+        </ul>
+
+        <p>勝利条件</p>
+        <ul>
+          <li>列をそろえるか・たくさん置く</li>
+        </ul>
+
+        <p>敗北条件</p>
+        <ul>
+          <li>相手がパス→自分もパス</li>
+          <li>自分がパス→相手が置く→自分がパス</li>
+        </ul>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
