@@ -148,6 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
         playerHasConstraintLifted[currentPlayer] = false; // 制約解除状態は1回で終了
         playerJustMadeAPass[currentPlayer] = false;
         overallLastActionWasPass = false;
+        messageElement.textContent = `${currentPlayer}が[${row},${col}]に置きました`; //パスしましたを消去
+        
 
         const winner = checkWin();
         if (winner) {
@@ -163,11 +165,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 連続パスによる敗北判定
         if (overallLastActionWasPass) { // 異プレイヤー間の連続パス (例: Xがパス -> Oがパス)
-            endGame(currentPlayer === 'X' ? 'O' : 'X', `${currentPlayer}の負け (連続パス)`);
+            endGame(currentPlayer === 'X' ? 'O' : 'X', `${currentPlayer}の負け (連続パス)💀`);
             return;
         }
         if (playerJustMadeAPass[currentPlayer]) { // 同一プレイヤーの連続パス (例: Xがパス -> Oが置く -> Xがパス)
-             endGame(currentPlayer === 'X' ? 'O' : 'X', `${currentPlayer}の負け (連続パス)`);
+             endGame(currentPlayer === 'X' ? 'O' : 'X', `${currentPlayer}の負け (連続パス)💀`);
             return;
         }
 
@@ -199,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (winner === 'Draw') {
             messageElement.textContent = '引き分けです！';
         } else {
-            messageElement.textContent = `プレイヤー ${winner} の勝利です！`;
+            messageElement.textContent = `プレイヤー ${winner} の勝利です🎉`;
         }
         currentPlayerElement.textContent = "ゲーム終了";
     }
